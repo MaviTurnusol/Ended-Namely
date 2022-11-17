@@ -8,6 +8,16 @@ public class Fist : Node2D
         var player = GetNode<Player>("../Player");
 
         Position = player.Position;
+
+
+        if (player.a)
+        {
+            Rotation = 140;
+        }
+        else
+        {
+            Rotation = 0;
+        }
     }
 
     public override void _Ready()

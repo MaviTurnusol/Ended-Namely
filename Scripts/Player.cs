@@ -8,7 +8,7 @@ public class Player : KinematicBody2D
     // private string b = "text";
     PackedScene Fistscene;
 
-    float _hspeed = 0f;
+   public float _hspeed = 0f;
     float _dspeed = 0f;
     float _vspeed = 16f;
     float gravity = 0f;
@@ -16,6 +16,7 @@ public class Player : KinematicBody2D
     bool dashready = true;
     string state = "idle";
     bool fistis = true;
+    public bool a;
 
 
     Vector2 upDirection = Vector2.Up;
@@ -54,10 +55,12 @@ public class Player : KinematicBody2D
         if (Input.IsActionPressed("ui_left"))
         {
             _hspeed = -10f;
+            a = true;
         }
         else if (Input.IsActionPressed("ui_right"))
         {
             _hspeed = 10f;
+            a = false;
         }
         else if(_hspeed > 0)
         {
