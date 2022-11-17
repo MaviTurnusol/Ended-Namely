@@ -19,9 +19,6 @@ public class NlSpawner : Node2D
         Sprite spr2 = new Sprite();
         Sprite spr3 = new Sprite();
         Sprite spr4 = new Sprite();
-
-        Texture nlcircle = 
-        spr1.Texture = GD.Load("res://Nameless/nlcircle.png");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
