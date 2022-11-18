@@ -30,3 +30,5 @@ D:\Godod\Endless Nameless\Ended-Namely\.mono\temp\obj\Debug\Endless Nameless.Ass
 D:\Godod\Endless Nameless\Ended-Namely\.mono\temp\obj\Debug\Endless Nameless.csproj.CoreCompileInputs.cache
 D:\Godod\Endless Nameless\Ended-Namely\.mono\temp\obj\Debug\Endless Nameless.dll
 D:\Godod\Endless Nameless\Ended-Namely\.mono\temp\obj\Debug\Endless Nameless.pdb
+D:\GitHub\Ended-Namely\.mono\temp\bin\Debug\Endless Nameless.dll
+D:\GitHub\Ended-Namely\.mono\temp\bin\Debug\Endless Nameless.pdb

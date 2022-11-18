@@ -20,7 +20,7 @@ public class Player : KinematicBody2D
     public bool rightleft;
     double addtime = 0;
     bool koyun;
-    public bool yumrukvar;
+    public bool yumrukvar = false;
     bool fistchargevar;
     bool cekti = true;
     bool fistcharge = false;
@@ -156,14 +156,14 @@ public class Player : KinematicBody2D
     }
     public void on_timeout2()
     {
+        yumrukvar = false;
         _fspeed = 0f;
-        GD.Print("tim2");
     }
     public void on_timeout3()
     {
+        _fspeed = 0f;
+        yumrukvar = false;
         fistchargevar = false;
-      //  fistis = true;
-        GD.Print("tim3");
     }
 
 
@@ -194,13 +194,21 @@ public class Player : KinematicBody2D
                 addtime = 0;
                 timer3.Start();
                 _hspeed = 0f;
+                if (rightleft)
+                {
+                    _fspeed += 1f;
+                }
+                else
+                {
+                    _fspeed -= 1f;
+                }
+                yumrukvar = true;
                 fistcharge = true;
                 koyun = true;
                 fistis = false;
             }
             if (eventKey.Pressed == false && eventKey.Scancode == (int)KeyList.C && koyun)
             {
-                GD.Print(addtime);
                 if (addtime > 2.3)
                 {
                     addtime = 2.3;
@@ -209,7 +217,6 @@ public class Player : KinematicBody2D
                 Timer timer2 = this.GetNode<Timer>("Timer2");
                 timer2.WaitTime = (float)addtime / 15;
                 timer2.OneShot = true;
-            //    GD.Print(timer2.WaitTime);
                 Timer timer3 = this.GetNode<Timer>("Timer3");
 
                 if(timer2.WaitTime < 0.1)
@@ -246,7 +253,6 @@ public class Player : KinematicBody2D
                 }
 
                 cekti = true;
-                yumrukvar = false;
                 koyun = false;
                 fistis = true;
                 fistcharge = false;
