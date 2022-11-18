@@ -10,13 +10,17 @@ public class Player : KinematicBody2D
 
    public float _hspeed = 0f;
     float _dspeed = 0f;
+    float _fspeed = 0f;
     float _vspeed = 16f;
     float gravity = 0f;
     Vector2 velocity;
     bool dashready = true;
     string state = "idle";
     bool fistis = true;
-    public bool a;
+    public bool rightleft;
+    double addtime = 0;
+    bool koyun;
+    public bool yumrukvar;
 
 
     Vector2 upDirection = Vector2.Up;
@@ -31,9 +35,13 @@ public class Player : KinematicBody2D
         timer.WaitTime = (float) 0.5f;
         timer.Connect("timeout", this, "on_timeout");
 
-        Timer timer2 = this.GetNode<Timer>("Timer");
-        timer2.WaitTime = (float)0.5f;
+        Timer timer2 = this.GetNode<Timer>("Timer2");
+        timer2.WaitTime = (float) 1;
         timer2.Connect("timeout", this, "on_timeout2");
+
+        Timer timer3 = this.GetNode<Timer>("Timer3");
+        timer3.WaitTime = (float)3f;
+        timer3.OneShot = true;
 
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         stamina.Value = 1000.0;
@@ -55,12 +63,12 @@ public class Player : KinematicBody2D
         if (Input.IsActionPressed("ui_left"))
         {
             _hspeed = -10f;
-            a = true;
+            rightleft = true;
         }
         else if (Input.IsActionPressed("ui_right"))
         {
             _hspeed = 10f;
-            a = false;
+            rightleft = false;
         }
         else if(_hspeed > 0)
         {
@@ -72,7 +80,7 @@ public class Player : KinematicBody2D
         }
         if(IsOnFloor())
         {
-            GD.Print(_hspeed);
+           // GD.Print(_hspeed);
         }
 
         
@@ -114,7 +122,20 @@ public class Player : KinematicBody2D
             }
         }
 
-        velocity = MoveAndSlide(new Vector2((_hspeed + _dspeed) * 50, (_vspeed + gravity)), Vector2.Up);
+        velocity = MoveAndSlide(new Vector2((_hspeed + _dspeed + _fspeed) * 50, (_vspeed + gravity)), Vector2.Up);
+
+        Timer timer3 = this.GetNode<Timer>("Timer");
+
+        if (timer3.TimeLeft > 0)
+        {
+            addtime += 0.01;
+            
+        }
+        else
+        {
+            addtime = 0;
+        }
+        GD.Print(_fspeed);
     }
 
     public void on_timeout()
@@ -133,7 +154,9 @@ public class Player : KinematicBody2D
     }
     public void on_timeout2()
     {
+        _fspeed = 0f;
         fistis = true;
+        GD.Print("tim2");
     }
 
 
@@ -152,14 +175,35 @@ public class Player : KinematicBody2D
             }
             if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.C && fistis)
             {
-                Timer timer2 = this.GetNode<Timer>("Timer");
+                Timer timer3 = this.GetNode<Timer>("Timer");
                 Fist fist = (Fist)Fistscene.Instance();
                 fist.Position = Position;
                 fist.Rotation = Rotation;
                 GetParent().AddChild(fist);
                 GetTree().SetInputAsHandled();
+                timer3.Start();
+                koyun = true;
                 fistis = false;
+            }
+            if (eventKey.Pressed == false && eventKey.Scancode == (int)KeyList.C && koyun)
+            {
+                Timer timer2 = this.GetNode<Timer>("Timer2");
+                Timer timer3 = this.GetNode<Timer>("Timer3");
+
+                if (rightleft)
+                {
+                    _fspeed -= 5f;
+                }
+                else
+                {
+                    _fspeed += 5f;
+                }
+
+                GD.Print(addtime);
                 timer2.Start();
+                timer3.Stop();
+                yumrukvar = false;
+                koyun = false;
             }
         }
 

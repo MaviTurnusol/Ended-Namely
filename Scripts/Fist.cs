@@ -10,26 +10,28 @@ public class Fist : Node2D
         Position = player.Position;
 
 
-        if (player.a)
+        if (player.rightleft)
         {
-            Rotation = 140;
+            RotationDegrees = 180;
         }
         else
         {
-            Rotation = 0;
+            RotationDegrees = 0;
+        }
+
+        if (player.yumrukvar == false)
+        {
+            QueueFree();
         }
     }
 
     public override void _Ready()
     {
-        Timer timer = this.GetNode<Timer>("Timer");
-        timer.WaitTime = (float)0.3;
-        timer.Connect("timeout", this, "on_timeout");
-        timer.Start();
+        
     }
 
     public void on_timeout()
     {
-        QueueFree();
+        
     }
 }
