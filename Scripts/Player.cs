@@ -21,6 +21,9 @@ public class Player : KinematicBody2D
     double addtime = 0;
     bool koyun;
     public bool yumrukvar;
+    bool fistchargevar;
+    bool cekti = true;
+    bool fistcharge = false;
 
 
     Vector2 upDirection = Vector2.Up;
@@ -36,12 +39,12 @@ public class Player : KinematicBody2D
         timer.Connect("timeout", this, "on_timeout");
 
         Timer timer2 = this.GetNode<Timer>("Timer2");
-        timer2.WaitTime = (float) 1;
         timer2.Connect("timeout", this, "on_timeout2");
 
         Timer timer3 = this.GetNode<Timer>("Timer3");
-        timer3.WaitTime = (float)3f;
+        timer3.WaitTime = (float)1;
         timer3.OneShot = true;
+        timer3.Connect("timeout", this, "on_timeout3");
 
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         stamina.Value = 1000.0;
@@ -60,23 +63,26 @@ public class Player : KinematicBody2D
         Tween twink = GetParent().GetNode<Tween>("twink");
         stamina.Value += 1;
 
-        if (Input.IsActionPressed("ui_left"))
+        if (!fistcharge)
         {
-            _hspeed = -10f;
-            rightleft = true;
-        }
-        else if (Input.IsActionPressed("ui_right"))
-        {
-            _hspeed = 10f;
-            rightleft = false;
-        }
-        else if(_hspeed > 0)
-        {
-            _hspeed -= 0.5f;
-        }
-        else if(_hspeed < 0)
-        {
-            _hspeed += 0.5f;
+            if (Input.IsActionPressed("ui_left"))
+            {
+                _hspeed = -10f;
+                rightleft = true;
+            }
+            else if (Input.IsActionPressed("ui_right"))
+            {
+                _hspeed = 10f;
+                rightleft = false;
+            }
+            else if (_hspeed > 0)
+            {
+                _hspeed -= 0.5f;
+            }
+            else if (_hspeed < 0)
+            {
+                _hspeed += 0.5f;
+            }
         }
         if(IsOnFloor())
         {
@@ -124,18 +130,14 @@ public class Player : KinematicBody2D
 
         velocity = MoveAndSlide(new Vector2((_hspeed + _dspeed + _fspeed) * 50, (_vspeed + gravity)), Vector2.Up);
 
-        Timer timer3 = this.GetNode<Timer>("Timer");
+        Timer timer3 = this.GetNode<Timer>("Timer3");
 
-        if (timer3.TimeLeft > 0)
-        {
-            addtime += 0.01;
-            
+        if (timer3.TimeLeft > 0 )
+        {            
+           addtime += 0.1;           
         }
-        else
-        {
-            addtime = 0;
-        }
-        GD.Print(_fspeed);
+        
+      //  GD.Print(_fspeed);
     }
 
     public void on_timeout()
@@ -155,9 +157,15 @@ public class Player : KinematicBody2D
     public void on_timeout2()
     {
         _fspeed = 0f;
-        fistis = true;
         GD.Print("tim2");
     }
+    public void on_timeout3()
+    {
+        fistchargevar = false;
+      //  fistis = true;
+        GD.Print("tim3");
+    }
+
 
 
     public override void _UnhandledInput(InputEvent @event)
@@ -173,37 +181,75 @@ public class Player : KinematicBody2D
             {
                 _vspeed = 0f;
             }
-            if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.C && fistis)
+            if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.C && fistis && cekti)
             {
-                Timer timer3 = this.GetNode<Timer>("Timer");
+                Timer timer3 = this.GetNode<Timer>("Timer3");
+
                 Fist fist = (Fist)Fistscene.Instance();
                 fist.Position = Position;
                 fist.Rotation = Rotation;
                 GetParent().AddChild(fist);
                 GetTree().SetInputAsHandled();
+                fistchargevar = true;
+                addtime = 0;
                 timer3.Start();
+                _hspeed = 0f;
+                fistcharge = true;
                 koyun = true;
                 fistis = false;
             }
             if (eventKey.Pressed == false && eventKey.Scancode == (int)KeyList.C && koyun)
             {
+                GD.Print(addtime);
+                if (addtime > 2.3)
+                {
+                    addtime = 2.3;
+                }
+
                 Timer timer2 = this.GetNode<Timer>("Timer2");
+                timer2.WaitTime = (float)addtime / 15;
+                timer2.OneShot = true;
+            //    GD.Print(timer2.WaitTime);
                 Timer timer3 = this.GetNode<Timer>("Timer3");
 
-                if (rightleft)
+                if(timer2.WaitTime < 0.1)
                 {
-                    _fspeed -= 5f;
+                    if (fistchargevar)
+                    {
+                        if (rightleft)
+                        {
+                            _fspeed -= 20f ;
+                        }
+                        else
+                        {
+                            _fspeed += 20f ;
+                        }
+                        timer3.Stop();
+                        timer2.Start();
+                    }
                 }
-                else
+                if (timer2.WaitTime > 0.1)
                 {
-                    _fspeed += 5f;
+                    if (fistchargevar)
+                    {
+                        if (rightleft)
+                        {
+                            _fspeed -= 50f;
+                        }
+                        else
+                        {
+                            _fspeed += 50f;
+                        }
+                        timer3.Stop();
+                        timer2.Start();
+                    }
                 }
 
-                GD.Print(addtime);
-                timer2.Start();
-                timer3.Stop();
+                cekti = true;
                 yumrukvar = false;
                 koyun = false;
+                fistis = true;
+                fistcharge = false;
             }
         }
 
