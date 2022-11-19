@@ -11,6 +11,7 @@ public class Player : KinematicBody2D
    public float _hspeed = 0f;
     float _dspeed = 0f;
     float _fspeed = 0f;
+    float _newfspeed = 0f;
     float _vspeed = 16f;
     float gravity = 0f;
     Vector2 velocity;
@@ -35,14 +36,14 @@ public class Player : KinematicBody2D
         Fistscene = GD.Load<PackedScene>("res://Scenes/Fist.tscn");
 
         Timer timer = this.GetNode<Timer>("Timer");
-        timer.WaitTime = (float) 0.5f;
+        timer.WaitTime = (float) 1f;
         timer.Connect("timeout", this, "on_timeout");
 
         Timer timer2 = this.GetNode<Timer>("Timer2");
         timer2.Connect("timeout", this, "on_timeout2");
 
         Timer timer3 = this.GetNode<Timer>("Timer3");
-        timer3.WaitTime = (float)1;
+        timer3.WaitTime = (float)2;
         timer3.OneShot = true;
         timer3.Connect("timeout", this, "on_timeout3");
 
@@ -56,11 +57,18 @@ public class Player : KinematicBody2D
         stamina.Value = val;
     }
 
+    void fistgetter(float mal)
+    {
+        _fspeed = mal;
+    }
+
     public override void _PhysicsProcess(float delta)
     {
+        GD.Print(_fspeed, _newfspeed);
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         CanvasLayer canvasex = GetParent().GetNode<CanvasLayer>("CanvasLayer");
         Tween twink = GetParent().GetNode<Tween>("twink");
+        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
         stamina.Value += 1;
 
         if (!fistcharge)
@@ -157,11 +165,15 @@ public class Player : KinematicBody2D
     public void on_timeout2()
     {
         yumrukvar = false;
-        _fspeed = 0f;
+        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
+        twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, 0, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+        _fspeed = 0;
     }
     public void on_timeout3()
     {
-        _fspeed = 0f;
+        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
+        twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, 0, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+        _fspeed = 0;
         yumrukvar = false;
         fistchargevar = false;
     }
@@ -170,6 +182,8 @@ public class Player : KinematicBody2D
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
+        
         base._UnhandledInput(@event);
         if (@event is InputEventKey eventKey)
         {
@@ -196,11 +210,11 @@ public class Player : KinematicBody2D
                 _hspeed = 0f;
                 if (rightleft)
                 {
-                    _fspeed += 1f;
+                    _fspeed += 1;
                 }
                 else
                 {
-                    _fspeed -= 1f;
+                    _fspeed -= 1;
                 }
                 yumrukvar = true;
                 fistcharge = true;
@@ -225,11 +239,11 @@ public class Player : KinematicBody2D
                     {
                         if (rightleft)
                         {
-                            _fspeed -= 20f ;
+                            _fspeed -= 20f;
                         }
                         else
                         {
-                            _fspeed += 20f ;
+                            _fspeed += 20f;
                         }
                         timer3.Stop();
                         timer2.Start();
@@ -241,11 +255,13 @@ public class Player : KinematicBody2D
                     {
                         if (rightleft)
                         {
-                            _fspeed -= 50f;
+                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed - 500, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                            twinkfisting.Start();
                         }
                         else
                         {
-                            _fspeed += 50f;
+                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed + 500, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                            twinkfisting.Start();
                         }
                         timer3.Stop();
                         timer2.Start();

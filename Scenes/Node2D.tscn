@@ -32,3 +32,5 @@ nine_patch_stretch = true
 
 [node name="NlSpawner" parent="." instance=ExtResource( 5 )]
 position = Vector2( 427, 895 )
+
+[node name="twinkfisting" type="Tween" parent="."]
