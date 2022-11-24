@@ -255,12 +255,12 @@ public class Player : KinematicBody2D
                     {
                         if (rightleft)
                         {
-                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed - 500, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed - 700, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                             twinkfisting.Start();
                         }
                         else
                         {
-                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed + 500, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed + 700, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                             twinkfisting.Start();
                         }
                         timer3.Stop();
