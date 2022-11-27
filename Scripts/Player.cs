@@ -64,7 +64,7 @@ public class Player : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        GD.Print(_fspeed, _newfspeed);
+        //GD.Print(_fspeed, _newfspeed);
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         CanvasLayer canvasex = GetParent().GetNode<CanvasLayer>("CanvasLayer");
         Tween twink = GetParent().GetNode<Tween>("twink");
