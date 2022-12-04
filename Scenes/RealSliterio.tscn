@@ -10,14 +10,17 @@ extents = Vector2( 30.5, 31.5 )
 z_as_relative = false
 
 [node name="SliterioHead" parent="." instance=ExtResource( 2 )]
-position = Vector2( 77, 0 )
+position = Vector2( 42, 0 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="SliterioBody" type="RigidBody2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="SliterioBody"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SliterioBody"]
+scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="DampedSpringJoint2D" type="PinJoint2D" parent="SliterioBody"]
@@ -35,12 +38,14 @@ node_b = NodePath("..")
 softness = 0.5
 
 [node name="SliterioBody2" type="RigidBody2D" parent="."]
-position = Vector2( -77, 0 )
+position = Vector2( -42, 0 )
 
 [node name="Sprite" type="Sprite" parent="SliterioBody2"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SliterioBody2"]
+scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="DampedSpringJoint2D" type="PinJoint2D" parent="SliterioBody2"]
@@ -58,12 +63,14 @@ node_b = NodePath("..")
 softness = 0.5
 
 [node name="SliterioBody3" type="RigidBody2D" parent="."]
-position = Vector2( -154, 0 )
+position = Vector2( -84, 0 )
 
 [node name="Sprite" type="Sprite" parent="SliterioBody3"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SliterioBody3"]
+scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="DampedSpringJoint2D" type="PinJoint2D" parent="SliterioBody3"]

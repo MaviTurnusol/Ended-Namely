@@ -26,6 +26,7 @@ public class Drone : KinematicBody2D
 
     KinematicBody2D Player;
     Tween dronetwink;
+    Tween yavaslama;
 
     Vector2 velocity;
     float _hspeed;
@@ -59,6 +60,7 @@ public class Drone : KinematicBody2D
         //Oyuncuyu tanimlama
         Player = GetParent().GetNode<KinematicBody2D>("Player");
         dronetwink = GetNode<Tween>("dronetwink");
+        yavaslama = GetNode<Tween>("yavaslama");
 
         _hspeed = 0;
         _vspeed = 0;
@@ -119,55 +121,57 @@ public class Drone : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        if(DistanceToPlayer(this.Position) > 100)
+        if(DistanceToPlayer(this.Position) > 10)
         {
             if(rcU.IsColliding() == false && ifMin(up) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "vgetter", _vspeed, _vspeed - 10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "vgetter", 0, - 5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
             }
             if(rcD.IsColliding() == false && ifMin(down) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "vgetter", _vspeed, _vspeed + 10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "vgetter", 0, + 5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
             }
             if(rcL.IsColliding() == false && ifMin(left) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "hgetter", _hspeed, _hspeed - 10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "hgetter", 0, -5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
+                GD.Print("solagittim"+ DistanceToPlayer(right) + ",,,," + DistanceToPlayer(left));
             }
             if(rcR.IsColliding() == false && ifMin(right) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "hgetter", _hspeed, _hspeed + 10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "hgetter", 0, 5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
             }
             if(rcUR.IsColliding() == false && ifMin(upright) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "hvgetter", 0, 10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "hvgetter", 0, 5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
             }
             if(rcUL.IsColliding() == false && ifMin(upleft) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "vhgetter", 0, -10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "vhgetter", 0, -5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
             }
             if(rcDR.IsColliding() == false && ifMin(downright) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "vhgetter", 0, 10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "vhgetter", 0, 5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
             }
             if(rcDL.IsColliding() == false && ifMin(downleft) == true && zamandoldu == true)
             {
-                dronetwink.InterpolateMethod(this, "hvgetter", 0, -10, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
+                dronetwink.InterpolateMethod(this, "hvgetter", 0, -5, 1f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
                 dronetwink.Start();
                 zamandoldu = false;
+                GD.Print("solassagi gittim" + DistanceToPlayer(right) + ",,,," + DistanceToPlayer(downleft));
             }
         } else {
             _hspeed = 0;

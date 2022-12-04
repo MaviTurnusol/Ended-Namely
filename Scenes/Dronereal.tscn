@@ -68,7 +68,7 @@ script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )
-frame = 1
+frame = 10
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -78,35 +78,45 @@ shape = SubResource( 14 )
 
 [node name="rcU" type="RayCast2D" parent="."]
 rotation = 3.14159
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcUL" type="RayCast2D" parent="."]
 rotation = 2.18166
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcUR" type="RayCast2D" parent="."]
 rotation = -2.35619
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcL" type="RayCast2D" parent="."]
 rotation = 1.5708
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcR" type="RayCast2D" parent="."]
 rotation = -1.5708
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcD" type="RayCast2D" parent="."]
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcDL" type="RayCast2D" parent="."]
 rotation = 0.785398
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="rcDR" type="RayCast2D" parent="."]
 rotation = -0.785398
-cast_to = Vector2( 0, 100 )
+enabled = true
+cast_to = Vector2( 0, 150 )
 
 [node name="dronetwink" type="Tween" parent="."]
+
+[node name="yavaslama" type="Tween" parent="."]
 
 [node name="Tyler" type="Timer" parent="."]
