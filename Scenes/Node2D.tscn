@@ -37,13 +37,8 @@ position = Vector2( 427, 895 )
 
 [node name="twinkfisting" type="Tween" parent="."]
 
-<<<<<<< HEAD
-[node name="Drone" parent="." instance=ExtResource( 6 )]
-position = Vector2( 917, 727 )
-=======
 [node name="Node2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 136, 937 )
 
 [node name="Drone" parent="." instance=ExtResource( 7 )]
 position = Vector2( 106, 586 )
->>>>>>> 6e598a0cf95d075d382d08bd4f7c4e1762af5067
