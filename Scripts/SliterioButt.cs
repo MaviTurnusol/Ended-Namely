@@ -3,8 +3,8 @@ using System;
 
 public class SliterioButt : KinematicBody2D
 {
-  //  public KinematicBody2D kafa; 
-    float speed = 0f;
+    //  public KinematicBody2D kafa; 
+    float hspeed = 0f;
     float _vspeed = 0f;
     Vector2 velocity;
     float gravity = 0f;
@@ -15,18 +15,29 @@ public class SliterioButt : KinematicBody2D
     }
 
 
-  public override void _Process(float delta)
-  {
+    public override void _Process(float delta)
+    {
         var kafa = GetNode<SliterioHead>("../SliterioHead");
 
         if (!kafa.right)
         {
-            speed = -3;
+            hspeed = -3;
         }
         else
         {
-            speed = 3;
+            hspeed = 3;
         }
+
+        //aralarindaki mesafeyi ayarlama
+        if (kafa.GlobalPosition.x - this.GlobalPosition.x > 185 && kafa.right)
+        {
+            hspeed += 2;
+        }
+        if (kafa.GlobalPosition.x - this.GlobalPosition.x < 155 && kafa.right)
+        {
+            hspeed -= 2;
+        }
+
         //gravity
         if (!IsOnFloor() && gravity < 640f)
         {
@@ -41,7 +52,7 @@ public class SliterioButt : KinematicBody2D
                 _vspeed += 24f;
             }
         }
-        velocity = MoveAndSlide(new Vector2(speed * 50, (_vspeed + gravity)), Vector2.Up);
+        velocity = MoveAndSlide(new Vector2(hspeed * 50, (_vspeed + gravity)), Vector2.Up);
 
     }
 }

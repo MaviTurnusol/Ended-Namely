@@ -6,13 +6,17 @@ public class SliterioHead : KinematicBody2D
     public KinematicBody2D player;
     public RigidBody2D kardes;
     public KinematicBody2D popo;
-    float speed = 0f;
+    float hspeed = 0f;
     float _vspeed = 0f;
-    float aramesafe = 0;
     Vector2 velocity;
     public bool right;
     float gravity = 0f;
     public bool popokafayakin;
+
+    public override void _Ready()
+    {
+
+    }
 
     public override void _PhysicsProcess(float delta)
     {
@@ -31,19 +35,22 @@ public class SliterioHead : KinematicBody2D
 
         if (right)
         {
-            speed = 3;
+            hspeed = 3;
         }
         else
         {
-            speed = -3;
+            hspeed = -3;
         }
 
-        //170
         //aralarindaki mesafeyi ayarlama
-        //  if(this.GlobalPosition.x - popo.GlobalPosition.x > 170)
-        //  {
-
-        //   }
+        if (this.GlobalPosition.x - popo.GlobalPosition.x > 185 && !right)
+        {
+            hspeed -= 2;
+        }
+        if (this.GlobalPosition.x - popo.GlobalPosition.x < 155 && !right)
+        {
+            hspeed += 2;
+        }
 
         //gravity
         if (!IsOnFloor() && gravity < 640f)
@@ -59,6 +66,6 @@ public class SliterioHead : KinematicBody2D
                 _vspeed += 24f;
             }
         }
-        velocity = MoveAndSlide(new Vector2(speed * 50, (_vspeed + gravity)), Vector2.Up);
+        velocity = MoveAndSlide(new Vector2(hspeed * 50, (_vspeed + gravity)), Vector2.Up);
     }
 }
