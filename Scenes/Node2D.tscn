@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/ovarlaksaydam.png" type="Texture" id=4]
 [ext_resource path="res://Nameless/NlSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/RealSliterio.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Dronereal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/togg.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
 
@@ -40,5 +40,5 @@ position = Vector2( 427, 895 )
 [node name="Node2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 136, 937 )
 
-[node name="Drone" parent="." instance=ExtResource( 7 )]
-position = Vector2( 106, 586 )
+[node name="togg" parent="." instance=ExtResource( 7 )]
+position = Vector2( 953, 770 )
