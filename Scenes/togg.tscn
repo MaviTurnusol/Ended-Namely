@@ -19,13 +19,3 @@ texture = ExtResource( 1 )
 rotation = 3.14159
 enabled = true
 cast_to = Vector2( 0, 1000 )
-
-[node name="rcLeft" type="RayCast2D" parent="."]
-rotation = 0.785398
-enabled = true
-cast_to = Vector2( 0, 150 )
-
-[node name="rcRight" type="RayCast2D" parent="."]
-rotation = -0.785398
-enabled = true
-cast_to = Vector2( 0, 150 )
