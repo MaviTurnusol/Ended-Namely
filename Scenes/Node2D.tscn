@@ -11,7 +11,7 @@
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1109, 907 )
+position = Vector2( 1157, 903 )
 collision/safe_margin = 0.8
 
 [node name="twink" type="Tween" parent="."]
