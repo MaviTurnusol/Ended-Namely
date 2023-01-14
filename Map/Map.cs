@@ -6,8 +6,6 @@ public class Map : Node2D
     PackedScene Koridorscene;
     PackedScene Merdivenscene;
     RandomNumberGenerator rng;
-    float merdivenyerx;
-    float merdivenyery;
     int i;
     int merdivenyonu = 1;
 
