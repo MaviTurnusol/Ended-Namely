@@ -4,7 +4,6 @@ using System;
 public class Kapi : Node2D
 {
     PackedScene Odascene;
-    int i;
     int boyut = 15;
     RandomNumberGenerator rng;
     bool kapiteleport = false;
@@ -36,18 +35,21 @@ public class Kapi : Node2D
 
     public override void _Process(float delta)
     {
-        if (Input.IsKeyPressed((int)KeyList.Up) && kapiteleport && !altta)
-        {
-        var altsprite = GetNode<Sprite>("Altsprite");
 
-        GetNode<KinematicBody2D>("../../Player").GlobalPosition = altsprite.GlobalPosition;
+        if (Input.IsActionJustPressed("opendoor") && kapiteleport && !altta)
+        {
+
+        var player = GetNode<Player>("../../../Player");
+        var altsprite = GetNode<Sprite>("Altsprite");
+        player.GlobalPosition = altsprite.GlobalPosition;     
         }
 
-        if (Input.IsKeyPressed((int)KeyList.Up) && kapiteleport && altta)
+        if (Input.IsActionJustPressed("opendoor") && kapiteleport && altta)
         {
-        var kapi = GetNode<Sprite>("Sprite");
 
-        GetNode<KinematicBody2D>("../../Player").GlobalPosition = kapi.GlobalPosition;
+        var player = GetNode<Player>("../../../Player");
+        var kapi = GetNode<Sprite>("Sprite");
+        player.GlobalPosition = kapi.GlobalPosition;
         }
     }
 
