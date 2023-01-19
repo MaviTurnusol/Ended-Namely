@@ -38,7 +38,16 @@ public class Koridor : Node2D
             AddChild(kapi);
             kapi.Position = new Vector2(a*64,7*64);
 
-         //   GD.Print("AABB");
         }
+
+        /* 
+        for(a = 0; a <= int kapiyertopx; a++)
+        {
+            Kapi kapi = (Kapi)Kapiscene.Instance();
+            AddChild(kapi);
+            kapi.Position = new Vector2(a*64,7*64);
+
+        }
+        */
     }
 }
