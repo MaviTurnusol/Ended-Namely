@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\Ended-Namely\\Endless Nameless.csproj": {}
+    "D:\\Godod\\Endless Nameless\\Ended-Namely\\Endless Nameless.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\Ended-Namely\\Endless Nameless.csproj": {
+    "D:\\Godod\\Endless Nameless\\Ended-Namely\\Endless Nameless.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\Ended-Namely\\Endless Nameless.csproj",
+        "projectUniqueName": "D:\\Godod\\Endless Nameless\\Ended-Namely\\Endless Nameless.csproj",
         "projectName": "Endless Nameless",
-        "projectPath": "D:\\GitHub\\Ended-Namely\\Endless Nameless.csproj",
-        "packagesPath": "C:\\Users\\Mert\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\Ended-Namely\\.mono\\temp\\obj\\",
+        "projectPath": "D:\\Godod\\Endless Nameless\\Ended-Namely\\Endless Nameless.csproj",
+        "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
+        "outputPath": "D:\\Godod\\Endless Nameless\\Ended-Namely\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mert\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Master\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +37,15 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

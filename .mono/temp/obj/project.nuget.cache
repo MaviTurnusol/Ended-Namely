@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "dd1TMNFHBzlClJZYnU2fXSbyIfU6h/dRUTCdae1Zn2ozTLz54SNCsVJnQvxLnqyWZRomr7IjJSyg+0E92ndwNg==",
+  "dgSpecHash": "uVaPgu9CNESP3f2y6mR6yknpME4J9L84kI7dzQyKKYi/P8UyKgTFvopAJ2fAzn5UjfnN1vX8pZDPo3lPewAJ2A==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\Ended-Namely\\Endless Nameless.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Godod\\Endless Nameless\\Ended-Namely\\Endless Nameless.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Master\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\Master\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.2\\microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
