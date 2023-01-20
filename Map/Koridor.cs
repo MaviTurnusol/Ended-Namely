@@ -8,13 +8,14 @@ public class Koridor : Node2D
     public int a;
     int boyut;
     RandomNumberGenerator rng;
-    int kapimiktari = 3;
+    int kapichance = 1;
+    public int koridorkapimiktari;
 
     public override void _Ready()
-    {
+    {      
         Kapiscene = GD.Load<PackedScene>("res://Map/Kapi.tscn");
-
         TileMap tileMap = GetNode<TileMap>("YerTavan");
+        var map = GetNode<Map>("../../Map");
 
         rng = new RandomNumberGenerator();
         rng.Randomize();
@@ -31,23 +32,19 @@ public class Koridor : Node2D
 
         }
 
-        //kapilar
-        for(a = 0; a <= kapimiktari; a++)
+        //kapilar 
+        for(a = 5; a <= boyut; a += 10)
         {
+            if(kapichance == 1){
             Kapi kapi = (Kapi)Kapiscene.Instance();
             AddChild(kapi);
             kapi.Position = new Vector2(a*64,7*64);
+            map.mapkapimiktari();
+            }
+
+            kapichance = rng.RandiRange(0, 1);
 
         }
 
-        /* 
-        for(a = 0; a <= int kapiyertopx; a++)
-        {
-            Kapi kapi = (Kapi)Kapiscene.Instance();
-            AddChild(kapi);
-            kapi.Position = new Vector2(a*64,7*64);
-
-        }
-        */
     }
 }
