@@ -55,8 +55,9 @@ public class EyeBox : StaticBody2D
         else if(!unlemCD) {
         Unlem unlem = (Unlem)UnlemScene.Instance();
         AddChild(unlem);
-        unlem.Position = new Vector2(Cornea.GlobalPosition.y, Cornea.GlobalPosition.x);
-        GD.Print("koydum");
+        tyler.Start();
+        unlem.Position -= new Vector2(0, 40);
+        GD.Print(unlem.GlobalPosition);
         unlemCD = true;
         }
         if((alpha <= rcUp.RotationDegrees) && (alpha - rcUp.RotationDegrees <= 180))

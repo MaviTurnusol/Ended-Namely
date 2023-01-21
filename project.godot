@@ -13,6 +13,10 @@ config_version=4
 config/name="Endless Nameless"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [display]
 
 window/size/width=1950
