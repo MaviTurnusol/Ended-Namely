@@ -3,10 +3,6 @@ using System;
 
 public class Player : KinematicBody2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
     public float _hspeed = 0f;
     float _dspeed = 0f;
     float _newfspeed = 0f;
@@ -16,7 +12,6 @@ public class Player : KinematicBody2D
     bool dashready = true;
     string state = "idle";
     public bool rightleft;
-
 
     Vector2 upDirection = Vector2.Up;
 
@@ -41,10 +36,9 @@ public class Player : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        //GD.Print(_fspeed, _newfspeed);
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         CanvasLayer canvasex = GetParent().GetNode<CanvasLayer>("CanvasLayer");
-        Tween twink = GetParent().GetNode<Tween>("twink");
+        Tween twink = GetNode<Tween>("twink");
         stamina.Value += 1;
 
 
@@ -66,11 +60,6 @@ public class Player : KinematicBody2D
             {
                 _hspeed += 0.5f;
             }
-
-        if(IsOnFloor())
-        {
-           // GD.Print(_hspeed);
-        }
 
         //dash
         Timer timer = this.GetNode<Timer>("Timer");
@@ -118,7 +107,6 @@ public class Player : KinematicBody2D
             dashready = true;
         }
     }
-
 
 
     public override void _UnhandledInput(InputEvent @event)
