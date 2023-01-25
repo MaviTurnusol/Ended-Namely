@@ -6,25 +6,16 @@ public class Player : KinematicBody2D
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-    PackedScene Fistscene;
 
-   public float _hspeed = 0f;
+    public float _hspeed = 0f;
     float _dspeed = 0f;
-    float _fspeed = 0f;
     float _newfspeed = 0f;
     float _vspeed = 16f;
     float gravity = 0f;
     Vector2 velocity;
     bool dashready = true;
     string state = "idle";
-    bool fistis = true;
     public bool rightleft;
-    double addtime = 0;
-    bool koyun;
-    public bool yumrukvar = false;
-    bool fistchargevar;
-    bool cekti = true;
-    bool fistcharge = false;
 
 
     Vector2 upDirection = Vector2.Up;
@@ -33,19 +24,10 @@ public class Player : KinematicBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Fistscene = GD.Load<PackedScene>("res://Scenes/Fist.tscn");
 
         Timer timer = this.GetNode<Timer>("Timer");
         timer.WaitTime = (float) 1f;
         timer.Connect("timeout", this, "on_timeout");
-
-        Timer timer2 = this.GetNode<Timer>("Timer2");
-        timer2.Connect("timeout", this, "on_timeout2");
-
-        Timer timer3 = this.GetNode<Timer>("Timer3");
-        timer3.WaitTime = (float)2;
-        timer3.OneShot = true;
-        timer3.Connect("timeout", this, "on_timeout3");
 
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         stamina.Value = 1000.0;
@@ -57,22 +39,15 @@ public class Player : KinematicBody2D
         stamina.Value = val;
     }
 
-    void fistgetter(float mal)
-    {
-        _fspeed = mal;
-    }
-
     public override void _PhysicsProcess(float delta)
     {
         //GD.Print(_fspeed, _newfspeed);
         TextureProgress stamina = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetChild<TextureProgress>(0);
         CanvasLayer canvasex = GetParent().GetNode<CanvasLayer>("CanvasLayer");
         Tween twink = GetParent().GetNode<Tween>("twink");
-        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
         stamina.Value += 1;
 
-        if (!fistcharge)
-        {
+
             if (Input.IsActionPressed("ui_left"))
             {
                 _hspeed = -10f;
@@ -91,22 +66,11 @@ public class Player : KinematicBody2D
             {
                 _hspeed += 0.5f;
             }
-        }
+
         if(IsOnFloor())
         {
            // GD.Print(_hspeed);
         }
-
-        
-        //jump
-      //  if (Input.IsKeyPressed((int)KeyList.X) && IsOnFloor() == true)
-       // {
-      //       _vspeed = -1400f;
-      //  }
-      //  if (Input.IsKeyPressed((int)KeyList.Down))
-      //  {
-      //      _vspeed = 0f;
-      //  }
 
         //dash
         Timer timer = this.GetNode<Timer>("Timer");
@@ -136,16 +100,8 @@ public class Player : KinematicBody2D
             }
         }
 
-        velocity = MoveAndSlide(new Vector2((_hspeed + _dspeed + _fspeed) * 50, (_vspeed + gravity)), Vector2.Up);
+        velocity = MoveAndSlide(new Vector2((_hspeed + _dspeed) * 50, (_vspeed + gravity)), Vector2.Up);
 
-        Timer timer3 = this.GetNode<Timer>("Timer3");
-
-        if (timer3.TimeLeft > 0 )
-        {            
-           addtime += 0.1;           
-        }
-        
-      //  GD.Print(_fspeed);
     }
 
     public void on_timeout()
@@ -162,27 +118,11 @@ public class Player : KinematicBody2D
             dashready = true;
         }
     }
-    public void on_timeout2()
-    {
-        yumrukvar = false;
-        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
-        twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, 0, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
-        _fspeed = 0;
-    }
-    public void on_timeout3()
-    {
-        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
-        twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, 0, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
-        _fspeed = 0;
-        yumrukvar = false;
-        fistchargevar = false;
-    }
 
 
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        Tween twinkfisting = GetParent().GetNode<Tween>("twinkfisting");
         
         base._UnhandledInput(@event);
         if (@event is InputEventKey eventKey)
@@ -195,85 +135,8 @@ public class Player : KinematicBody2D
             {
                 _vspeed = 0f;
             }
-            if (eventKey.Pressed && eventKey.Scancode == (int)KeyList.C && fistis && cekti)
-            {
-                Timer timer3 = this.GetNode<Timer>("Timer3");
-
-                Fist fist = (Fist)Fistscene.Instance();
-                fist.Position = Position;
-                fist.Rotation = Rotation;
-                GetParent().AddChild(fist);
-                GetTree().SetInputAsHandled();
-                fistchargevar = true;
-                addtime = 0;
-                timer3.Start();
-                _hspeed = 0f;
-                if (rightleft)
-                {
-                    _fspeed += 1;
-                }
-                else
-                {
-                    _fspeed -= 1;
-                }
-                yumrukvar = true;
-                fistcharge = true;
-                koyun = true;
-                fistis = false;
-            }
-            if (eventKey.Pressed == false && eventKey.Scancode == (int)KeyList.C && koyun)
-            {
-                if (addtime > 2.3)
-                {
-                    addtime = 2.3;
-                }
-
-                Timer timer2 = this.GetNode<Timer>("Timer2");
-                timer2.WaitTime = (float)addtime / 15;
-                timer2.OneShot = true;
-                Timer timer3 = this.GetNode<Timer>("Timer3");
-
-                if(timer2.WaitTime < 0.1)
-                {
-                    if (fistchargevar)
-                    {
-                        if (rightleft)
-                        {
-                            _fspeed -= 20f;
-                        }
-                        else
-                        {
-                            _fspeed += 20f;
-                        }
-                        timer3.Stop();
-                        timer2.Start();
-                    }
-                }
-                if (timer2.WaitTime > 0.1)
-                {
-                    if (fistchargevar)
-                    {
-                        if (rightleft)
-                        {
-                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed - 700, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
-                            twinkfisting.Start();
-                        }
-                        else
-                        {
-                            twinkfisting.InterpolateMethod(this, "fistgetter", _fspeed, _fspeed + 700, 0.5f, Tween.TransitionType.Expo, Tween.EaseType.InOut);
-                            twinkfisting.Start();
-                        }
-                        timer3.Stop();
-                        timer2.Start();
-                    }
-                }
-
-                cekti = true;
-                koyun = false;
-                fistis = true;
-                fistcharge = false;
-            }
         }
 
     }
+
 }

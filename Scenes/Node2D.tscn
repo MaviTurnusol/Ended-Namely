@@ -7,7 +7,7 @@
 [ext_resource path="res://Nameless/NlSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/RealSliterio.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/togg.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Map/Koridor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Map/Map.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 
@@ -45,5 +45,5 @@ position = Vector2( -171, 579 )
 [node name="togg" parent="." instance=ExtResource( 7 )]
 position = Vector2( 953, 770 )
 
-[node name="Koridor" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1857, 660 )
+[node name="Map" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1889, 630 )

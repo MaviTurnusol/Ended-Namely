@@ -23,7 +23,7 @@
 script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2( 75, 75 )
+zoom = Vector2( 15, 15 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )

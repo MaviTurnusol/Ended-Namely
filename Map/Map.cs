@@ -8,9 +8,9 @@ public class Map : Node2D
     RandomNumberGenerator rng;
     int i;
     int merdivenyonu = 1;
-
-    int xvector = 0;
+    public int xvector = 0;
     int yvector = 0;
+    public int kapimiktari = 0;
 
     public override void _Ready()
     {
@@ -38,6 +38,9 @@ public class Map : Node2D
 
             xvector += koridor.i * 64;
 
+      //      koridormiktar++;
+
+
             Merdiven merdiven = (Merdiven)Merdivenscene.Instance();
             //normal merdiven
             if (merdivenyonu == 1){
@@ -57,6 +60,11 @@ public class Map : Node2D
             }
 
             merdivenyonu = rng.RandiRange(1, 2);
+
         }
+    }
+
+    public void mapkapimiktari(){
+        kapimiktari++;
     }
 }
