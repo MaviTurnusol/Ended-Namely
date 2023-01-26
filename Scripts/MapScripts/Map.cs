@@ -14,20 +14,11 @@ public class Map : Node2D
 
     public override void _Ready()
     {
-        Koridorscene = GD.Load<PackedScene>("res://Map/Koridor.tscn");
-        Merdivenscene = GD.Load<PackedScene>("res://Map/Merdiven.tscn");
+        Koridorscene = GD.Load<PackedScene>("res://Scenes/Map/Koridor.tscn");
+        Merdivenscene = GD.Load<PackedScene>("res://Scenes/Map/Merdiven.tscn");
 
         rng = new RandomNumberGenerator();
         rng.Randomize();
-
-
-
-        //merdiven vectorx
-    //    merdivenyerx = 64*(-7 - merdiven.i);
-    //    //merdiven vectory
-    //    merdivenyery = 64*(merdiven.i - 1);
-        //merdiven yer
-     //   merdiven.GlobalPosition = new Vector2(merdivenyerx,merdivenyery);
 
         for(i = 0;i <= 9;i++)
         {

@@ -17,13 +17,14 @@ public class Kapi : Node2D
         var koridor = GetNode<Koridor>("../../Koridor");
         var map = GetNode<Map>("../../../Map");
 
-        //odasayısı
+        //odasayisi
         rng = new RandomNumberGenerator();
         rng.Randomize();
+        //hangioda (0,odasayisi)
         odanum = rng.RandiRange(0,0);
         
         //odaspawn
-        Odascene = GD.Load<PackedScene>("res://Map/Oda/Oda"+ odanum.ToString()+".tscn");
+        Odascene = GD.Load<PackedScene>("res://Scenes/Map/Oda/Oda"+ odanum.ToString()+".tscn");
         Node2D odascene = (Node2D)Odascene.Instance();
         AddChild(odascene);
 
@@ -43,6 +44,7 @@ public class Kapi : Node2D
         var player = GetNode<Player>("../../../Player");
         var camera = player.GetNode<Camera2D>("Camera2D");
         var altsprite = GetNode<Sprite>("Altsprite");
+
         player.GlobalPosition = altsprite.GlobalPosition;
 
         camera.DragMarginVEnabled = false;
@@ -58,6 +60,7 @@ public class Kapi : Node2D
         var player = GetNode<Player>("../../../Player");
         var camera = player.GetNode<Camera2D>("Camera2D");
         var kapi = GetNode<Sprite>("Sprite");
+
         player.GlobalPosition = kapi.GlobalPosition;
 
         camera.DragMarginVEnabled = false;

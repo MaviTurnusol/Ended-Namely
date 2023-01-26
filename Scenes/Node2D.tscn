@@ -6,7 +6,7 @@
 [ext_resource path="res://Nameless/NlSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/RealSliterio.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/togg.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Map/Map.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Map/Map.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 

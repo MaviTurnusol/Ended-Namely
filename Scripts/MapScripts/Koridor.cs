@@ -13,7 +13,7 @@ public class Koridor : Node2D
 
     public override void _Ready()
     {      
-        Kapiscene = GD.Load<PackedScene>("res://Map/Kapi.tscn");
+        Kapiscene = GD.Load<PackedScene>("res://Scenes/Map/Kapi.tscn");
         TileMap tileMap = GetNode<TileMap>("YerTavan");
         var map = GetNode<Map>("../../Map");
 
