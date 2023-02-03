@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class EyeBox : StaticBody2D
+public class EyeBox : RigidBody2D
 {
     KinematicBody2D pluer;
     RayCast2D rcUp;
@@ -23,7 +23,7 @@ public class EyeBox : StaticBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        pluer = GetNode<KinematicBody2D>("../Player");
+        pluer = GetNode<KinematicBody2D>("../../Player");
         rcUp = GetNode<RayCast2D>("rcUp");
         Cornea = GetNode<Sprite>("Box/Cornea");
         tyler = GetNode<Timer>("Tyler");
