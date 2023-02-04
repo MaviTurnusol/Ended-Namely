@@ -13,7 +13,7 @@ public class Koridor : Node2D
 
     public override void _Ready()
     {      
-        Kapiscene = GD.Load<PackedScene>("res://Map/Kapi.tscn");
+        Kapiscene = GD.Load<PackedScene>("res://Scenes/Map/Kapi.tscn");
         TileMap tileMap = GetNode<TileMap>("YerTavan");
         var map = GetNode<Map>("../../Map");
 
@@ -33,7 +33,7 @@ public class Koridor : Node2D
         }
 
         //kapilar 
-        for(a = 5; a <= boyut; a += 10)
+        for(a = 5; a <= boyut - 5; a += 7)
         {
             if(kapichance == 1){
             Kapi kapi = (Kapi)Kapiscene.Instance();
