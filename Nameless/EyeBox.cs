@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class EyeBox : RigidBody2D
+public class EyeBox : StaticBody2D
 {
     KinematicBody2D pluer;
     RayCast2D rcUp;
@@ -37,7 +37,7 @@ public class EyeBox : RigidBody2D
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        alpha = (float)tanalan(this.Position, pluer.Position)+90;
+        alpha = (float)tanalan(GetParent<KinematicBody2D>().Position, pluer.Position)+90;
         CorneaPos = new Vector2((float)Math.Sin(rcUp.Rotation)*-10 + 2.5f,(float)Math.Cos(rcUp.Rotation)*10 + 12f);
         Cornea.Position = CorneaPos;
         //Raycast Donme

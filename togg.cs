@@ -22,8 +22,6 @@ public class togg : KinematicBody2D
         rcRight = GetNode<RayCast2D>("rcRight");
         rcLeft = GetNode<RayCast2D>("rcLeft");
         pluer = GetNode<KinematicBody2D>("../Player");
-
-        rcLeft.AddException();
     }
 
     public override void _PhysicsProcess(float delta)

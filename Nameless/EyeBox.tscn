@@ -8,8 +8,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[node name="EyeBox" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="EyeBox" type="StaticBody2D"]
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="Box" type="Sprite" parent="."]
