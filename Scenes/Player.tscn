@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/fsdsdfsdefsdfsfdsdfsfdsfd.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -43,3 +43,9 @@ drag_margin_top = 1.0
 drag_margin_right = 0.15
 drag_margin_bottom = 1.0
 editor_draw_drag_margin = true
+
+[node name="Tweendash" type="Tween" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="Timer3" type="Timer" parent="."]

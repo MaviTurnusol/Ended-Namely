@@ -91,7 +91,7 @@ public class Merdiven : Node2D
         var sabitcollision = GetNode<Area2D>("Camera Sabit").GetNode<CollisionShape2D>("UcSabit");
         var sabitdeilcollision = GetNode<Area2D>("Camera Sabit deil").GetNode<CollisionShape2D>("UcSabitDeil");
 
-        sabitcollision.Position = new Vector2(64*(xust + 4), 64*(yust));
+        sabitcollision.Position = new Vector2(64*(xust + 4) - 10, 64*(yust));
         sabitdeilcollision.Position = new Vector2(64*(xust + 4) -128, 64*(yust));
     }
 

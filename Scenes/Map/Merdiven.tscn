@@ -97,11 +97,11 @@ position = Vector2( 66, 289 )
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Sabit"]
-position = Vector2( -65, 0 )
+position = Vector2( -62, 0 )
 shape = SubResource( 5 )
 
 [node name="UcSabit" type="CollisionShape2D" parent="Camera Sabit"]
-position = Vector2( -63.5, 0 )
+position = Vector2( -66, 0 )
 shape = SubResource( 5 )
 
 [node name="Camera Sabit deil" type="Area2D" parent="."]

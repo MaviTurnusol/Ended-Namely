@@ -41,7 +41,7 @@ public class Kapi : Node2D
         if (Input.IsActionJustPressed("opendoor") && kapiteleport && !altta)
         {
 
-        var player = GetNode<Player>("../../../Player");
+        var player = GetNode<KinematicBody2D>("../../../Player");
         var camera = player.GetNode<Camera2D>("Camera2D");
         var altsprite = GetNode<Sprite>("Altsprite");
 
@@ -57,7 +57,7 @@ public class Kapi : Node2D
         if (Input.IsActionJustPressed("opendoor") && kapiteleport && altta)
         {
 
-        var player = GetNode<Player>("../../../Player");
+        var player = GetNode<KinematicBody2D>("../../../Player");
         var camera = player.GetNode<Camera2D>("Camera2D");
         var kapi = GetNode<Sprite>("Sprite");
 
